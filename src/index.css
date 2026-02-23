@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 4%;
+    --foreground: 0 0% 95%;
+
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 0 85% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 95%;
+
+    --muted: 0 0% 14%;
+    --muted-foreground: 0 0% 55%;
+
+    --accent: 0 85% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 16%;
+    --input: 0 0% 16%;
+    --ring: 0 85% 50%;
+
+    --radius: 0.25rem;
+
+    --sidebar-background: 0 0% 6%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 0 85% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 12%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 0 0% 16%;
+    --sidebar-ring: 0 85% 50%;
+
+    /* Custom tokens */
+    --glow-red: 0 100% 50%;
+    --glow-dark-red: 0 80% 35%;
+    --surface-glass: 0 0% 8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display;
+  }
+}
+
+@layer utilities {
+  .glow-red {
+    box-shadow: 0 0 20px hsl(var(--glow-red) / 0.3),
+      0 0 60px hsl(var(--glow-red) / 0.1),
+      inset 0 0 20px hsl(var(--glow-red) / 0.05);
+  }
+
+  .glow-red-sm {
+    box-shadow: 0 0 10px hsl(var(--glow-red) / 0.2),
+      0 0 30px hsl(var(--glow-red) / 0.05);
+  }
+
+  .text-glow-red {
+    text-shadow: 0 0 20px hsl(var(--glow-red) / 0.5),
+      0 0 40px hsl(var(--glow-red) / 0.2);
+  }
+
+  .border-glow {
+    border-color: hsl(var(--glow-red) / 0.3);
+  }
+
+  .glass-panel {
+    background: hsl(var(--surface-glass) / 0.8);
+    backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--border) / 0.5);
+  }
+
+  .scanline {
+    background: repeating-linear-gradient(0deg,
+        transparent,
+        transparent 2px,
+        hsl(var(--glow-red) / 0.03) 2px,
+        hsl(var(--glow-red) / 0.03) 4px);
+  }
+
+  .gradient-red {
+    background: linear-gradient(135deg, hsl(var(--glow-dark-red)), hsl(var(--glow-red)));
+  }
+
+  .gradient-red-text {
+    background: linear-gradient(135deg, hsl(var(--glow-red)), hsl(0 100% 70%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+/* Scanline animation */
+@keyframes scanline-move {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+/* Pulse glow */
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Grid background pattern */
+.cyber-grid {
+  background-image:
+    linear-gradient(hsl(var(--border) / 0.3) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(var(--border) / 0.3) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.pause-on-hover:hover {
+  animation-play-state: paused;
+}
